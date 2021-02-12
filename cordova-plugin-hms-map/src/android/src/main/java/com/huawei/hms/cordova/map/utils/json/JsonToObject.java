@@ -130,6 +130,25 @@ public final class JsonToObject {
         if (southwest == null || northeast == null) return null;
         return new LatLngBounds(southwest, northeast);
     }
+    
+    public static LatLngBounds constructLatLngBounds(JSONArray json) {
+      if (json != null && json.length() > 0){
+
+        LatLngBounds.Builder llbB = LatLngBounds.builder();
+        JSONArray latLngBounds = json;
+
+        for (int i=0; i < latLngBounds.length(); i++)
+        {
+          JSONObject latLng = latLngBounds.optJSONObject(i);
+          if(latLng != null) llbB.include(new LatLng(latLng.optDouble("lat", 0.0) , latLng.optDouble("lng", 0.0)));
+        }
+
+        LatLngBounds llb = llbB.build();
+
+        return  llb;
+      }
+      return null;
+    }
 
     public static CircleOptions constructCircleOptions(JSONObject json) {
         return new CircleOptions()
