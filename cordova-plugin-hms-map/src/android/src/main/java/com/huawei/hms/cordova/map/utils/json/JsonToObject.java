@@ -485,8 +485,10 @@ public final class JsonToObject {
         } else if (eventName.equals("newLatLng")) {
             return CameraUpdateFactory.newLatLng(constructLatLng(json.getJSONObject("latLng")));
         } else if (eventName.equals("newLatLngBounds")) {
-            if (!json.has("width") && !json.has("width"))
+            if (!json.has("width") && !json.has("width")) {
+                if(json.optJSONObject("bounds") == null && json.optJSONArray("bounds") != null) return CameraUpdateFactory.newLatLngBounds(constructLatLngBounds(json.optJSONArray("bounds")), json.getInt("padding"));
                 return CameraUpdateFactory.newLatLngBounds(constructLatLngBounds(json.getJSONObject("bounds")), json.getInt("padding"));
+            }
             return CameraUpdateFactory.newLatLngBounds(constructLatLngBounds(json.getJSONObject("bounds")), json.getInt("width"), json.getInt("height"), json.getInt("padding"));
         } else if (eventName.equals("newLatLngZoom")) {
             return CameraUpdateFactory.newLatLngZoom(constructLatLng(json.getJSONObject("latLng")), (float) json.getDouble("zoom"));
