@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.huawei.hms.api.HuaweiApiAvailability;
 import com.huawei.hms.cordova.map.components.CircleCapsule;
 import com.huawei.hms.cordova.map.components.GroundOverlayCapsule;
 import com.huawei.hms.cordova.map.components.MapComponent;
@@ -71,6 +72,15 @@ public class HMSMap extends CordovaPlugin {
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        boolean isAvailable = false;
+        Context context = cordova.getContext();
+        if (null != cordova.getContext()) {
+          int result = HuaweiApiAvailability.getInstance().isHuaweiMobileServicesAvailable(context);
+          isAvailable = (com.huawei.hms.api.ConnectionResult.SUCCESS == result);
+        }
+
+        if(!isAvailable) return;
+        
         MapsInitializer.initialize(cordova.getContext());
         hmsLogger = HMSLogger.getInstance(cordova.getContext());
         cordovaUtils = CordovaUtils.getInstance(webView);
