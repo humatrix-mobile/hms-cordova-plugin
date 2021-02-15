@@ -100,7 +100,7 @@ public class HMSMap extends CordovaPlugin {
                     new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
                 viewGroup.addView(pluginLayout, 
                     new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
-                pluginCordovaLayout.bringToFront();
+                pluginLayout.bringToFront();
         });
 
 
