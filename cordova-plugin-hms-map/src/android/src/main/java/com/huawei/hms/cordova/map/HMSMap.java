@@ -16,6 +16,7 @@
 
 package com.huawei.hms.cordova.map;
 
+import android.content.Context;
 import android.graphics.Color;
 
 import android.util.Log;
