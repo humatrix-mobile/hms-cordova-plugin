@@ -297,6 +297,7 @@ public class HmsLocalNotificationController {
 
             Intent intent = new Intent(context, intentClass);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.setAction("hms.intent.action.LOCAL_NOTIFICATION_ACTION");
             intent.putExtra(NotificationConstants.NOTIFICATION, bundle);
 
             Uri soundUri = null;
